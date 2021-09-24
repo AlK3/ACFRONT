@@ -81,7 +81,7 @@ function App() {
               <>
                 {load ? <Loader /> : <QuoteList quotes={quotes} />}
                 <PaginatorTypeTwo func={updateQuotes}/>
-                <div className='button-wrapper'>
+                <div className='wrapper'>
                   <Button color='#faa' onClick={() => dispatch({type: 'UPDATE_PAGE_ANIME', payload: {anime: '', page: 0}})}>Back</Button>
                 </div>
               </>
@@ -90,7 +90,7 @@ function App() {
           :
           <>
             <Quote quote={quote} />
-            <div className='button-wrapper'>
+            <div className='wrapper'>
               <Button color='#faa' onClick={updateQuote}>Random</Button>
             </div>
           </>
