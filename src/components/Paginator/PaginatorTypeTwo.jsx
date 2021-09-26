@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadQuotes } from "../../actions/actions";
+import { loadQuotes } from "../../actions";
 import { Button } from "../Button/Button";
 import { StyledPaginator } from "./StyledPaginator";
 
@@ -10,7 +10,7 @@ export const PaginatorTypeTwo = (props) => {
     const quotes = useSelector(state => state.quote.quotes);
 
     const onClick = (page) => {
-        loadQuotes(dispatch, pageAnime.anime, page);
+        dispatch(loadQuotes(pageAnime.anime, page));
         dispatch({type: 'UPDATE_PAGE_ANIME', payload: {anime: pageAnime.anime, page: page}});
     };
 

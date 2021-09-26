@@ -1,4 +1,5 @@
-import { UPDATE_QUOTES } from "../actions/actions";
+import { UPDATE_QUOTES } from "../actions";
+
 
 const defaultState = {
     quote: {

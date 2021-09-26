@@ -1,6 +1,7 @@
+import createSagaMiddleware from "@redux-saga/core";
 import React from "react";
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import thunk from "redux-thunk";
+import { watchLoadQuotes } from "../sagas";
 import { animeReducer } from "./animeReducer";
 import { headerItemReducer } from "./headerItemReducer";
 import { loadReducer } from "./loadReducer";
@@ -15,4 +16,6 @@ const rootReducer = combineReducers({
     quote: quoteReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+const sagaMiddleware = createSagaMiddleware();
+export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(watchLoadQuotes);
