@@ -1,13 +1,13 @@
-const defaultState = {
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
+const initialState = {
     load: false,
 }
-  
-export const loadReducer = (state = defaultState, action) => {
-    switch (action.type) {
-      case 'SET_LOAD':
-        return {load: action.payload};
-  
-      default:
-        return state;
-    }
-}
+
+const setLoad = createAction('SET_LOAD');
+
+export const loadReducer = createReducer(initialState, {
+  [setLoad]: (state, action) => {
+    state.load = action.payload;
+  }
+});

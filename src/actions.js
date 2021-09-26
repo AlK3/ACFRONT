@@ -8,21 +8,21 @@ export const LOAD_ANIME = 'LOAD_ANIME';
 export const updateQuotes = (dataFromServer) => {
     return {
         type: UPDATE_QUOTES,
-        payload: dataFromServer
+        payload: dataFromServer,
     };
 }
 
 export const updateQuote = (dataFromServer) => {
     return {
         type: UPDATE_QUOTE,
-        payload: dataFromServer
+        payload: dataFromServer,
     };
 }
 
 export const updateAnime = (dataFromServer) => {
     return {
         type: UPDATE_ANIME,
-        payload: dataFromServer
+        payload: dataFromServer,
     };
 }
 
@@ -30,18 +30,18 @@ export const loadQuotes = (title, page) => {
     return {
         type: LOAD_QUOTES,
         title,
-        page
+        page,
     };
 }
 
 export const loadQuote = () => {
     return {
-        type: LOAD_QUOTE
+        type: LOAD_QUOTE,
     }
 }
 
 export const loadAnime = () => {
     return {
-        type: LOAD_ANIME
+        type: LOAD_ANIME,
     }
 }

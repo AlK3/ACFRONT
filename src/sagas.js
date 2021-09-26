@@ -53,6 +53,6 @@ export default function* rootSaga() {
     yield all([
         watchLoadQuotes(),
         watchLoadQuote(),
-        watchLoadAnime()
+        watchLoadAnime(),
     ]);
 }

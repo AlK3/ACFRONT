@@ -1,7 +1,7 @@
+import { createAction, createReducer } from "@reduxjs/toolkit";
 import { UPDATE_QUOTE, UPDATE_QUOTES } from "../actions";
 
-
-const defaultState = {
+const initialState = {
     quote: {
         anime: '',
         character: '',
@@ -9,15 +9,15 @@ const defaultState = {
     },
     quotes: []
 }
-  
-export const quoteReducer = (state = defaultState, action) => {
-    switch (action.type) {
-      case UPDATE_QUOTE:
-        return {...state, quote: action.payload};
-      case UPDATE_QUOTES:
-        return {...state, quotes: action.payload};
 
-      default:
-        return state;
-    }
-}
+const updateQuote = createAction(UPDATE_QUOTE);
+const updateQuotes = createAction(UPDATE_QUOTES);
+
+export const quoteReducer = createReducer(initialState, {
+  [updateQuote]: (state, action) => {
+    state.quote = action.payload;
+  },
+  [updateQuotes]: (state, action) => {
+    state.quotes = action.payload;
+  }
+});

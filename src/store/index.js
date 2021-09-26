@@ -1,6 +1,5 @@
 import createSagaMiddleware from "@redux-saga/core";
-import React from "react";
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import rootSaga from "../sagas";
 import { animeReducer } from "./animeReducer";
 import { headerItemReducer } from "./headerItemReducer";
@@ -8,14 +7,15 @@ import { loadReducer } from "./loadReducer";
 import { pageReducer } from "./pageReducer";
 import { quoteReducer } from "./quoteReducer";
 
-const rootReducer = combineReducers({
-    anime: animeReducer,
-    load: loadReducer,
-    headerItem: headerItemReducer,
-    page: pageReducer,
-    quote: quoteReducer,
-});
-
 const sagaMiddleware = createSagaMiddleware();
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+export const store = configureStore({
+    reducer: {
+        anime: animeReducer,
+        load: loadReducer,
+        headerItem: headerItemReducer,
+        page: pageReducer,
+        quote: quoteReducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
+});
 sagaMiddleware.run(rootSaga);

@@ -1,22 +1,26 @@
-const defaultState = {
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
+const initialState = {
+    perPage: 30,
     pageMain: 1,
     pageAnime: {
         anime: '',
         page: 0
     },
-    perPage: 30,
 }
-  
-export const pageReducer = (state = defaultState, action) => {
-    switch (action.type) {
-        case 'UPDATE_PAGE_MAIN':
-            return {...state, pageMain: action.payload};
-        case 'UPDATE_PAGE_ANIME':
-            return {...state, pageAnime: action.payload};
-        case 'UPDATE_PER_PAGE':
-            return {...state, perPage: action.payload};
 
-        default:
-            return state;
+const updatePerPage = createAction('UPDATE_PER_PAGE');
+const updatePageMain = createAction('UPDATE_PAGE_MAIN');
+const updatePageAnime = createAction('UPDATE_PAGE_ANIME');
+
+export const pageReducer = createReducer(initialState, {
+    [updatePerPage]: (state, action) => {
+        state.perPage = action.payload;
+    },
+    [updatePageMain]: (state, action) => {
+        state.pageMain = action.payload;
+    },
+    [updatePageAnime]: (state, action) => {
+        state.pageAnime = action.payload;
     }
-}
+});
