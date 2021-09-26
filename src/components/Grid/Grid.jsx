@@ -8,8 +8,7 @@ export const Grid = (props) => {
             {
                 props.items.map(item => {
                     return <Item key={item}
-                                item={item}
-                                func={props.func} />;
+                                item={item} />;
                 })
             }
         </StyledGrid>

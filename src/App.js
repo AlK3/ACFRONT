@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid } from './components/Grid/Grid';
 import { Header } from './components/Header/Header';
 import { useEffect } from 'react';
-import Loader from './components/Loader/Loader';
+import { Loader } from './components/Loader/Loader';
 import { PaginatorTypeOne } from './components/Paginator/PaginatorTypeOne';
 import { Quote } from './components/Quote/Quote';
 import { Button } from './components/Button/Button';
@@ -48,16 +48,6 @@ function App() {
       })
   }
 
-  function updateQuotes(anime, page) {
-    dispatch({type: 'SET_LOAD', payload: true});
-    fetch(`https://animechan.vercel.app/api/quotes/anime?title=${anime}&page=${page}`)
-      .then(response => response.json())
-      .then(qs => {
-        dispatch({type: 'UPDATE_QUOTES', payload: qs});
-        dispatch({type: 'SET_LOAD', payload: false});
-      });
-  }
-
   useEffect(() => {
     dispatch({type: 'SET_HEADER_ITEM', payload: headerItems[0]});
     updateAnime();
@@ -74,13 +64,13 @@ function App() {
           <>
             {0 === pageAnime.page ?
               <>
-                <Grid items={currentAnime} func={updateQuotes}/>
+                <Grid items={currentAnime} />
                 <PaginatorTypeOne total={anime.length} />
               </>
               :
               <>
                 {load ? <Loader /> : <QuoteList quotes={quotes} />}
-                {quotes[0] && <PaginatorTypeTwo func={updateQuotes}/>}
+                {quotes[0] && <PaginatorTypeTwo />}
                 <div className='wrapper'>
                   <Button color='#faa' onClick={() => dispatch({type: 'UPDATE_PAGE_ANIME', payload: {anime: '', page: 0}})}>Back</Button>
                 </div>

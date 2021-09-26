@@ -1,3 +1,5 @@
+import { UPDATE_QUOTES } from "../actions/actions";
+
 const defaultState = {
     quote: {
         anime: '',
@@ -11,7 +13,7 @@ export const quoteReducer = (state = defaultState, action) => {
     switch (action.type) {
       case 'UPDATE_QUOTE':
         return {...state, quote: action.payload};
-      case 'UPDATE_QUOTES':
+      case UPDATE_QUOTES:
         return {...state, quotes: action.payload};
 
       default:

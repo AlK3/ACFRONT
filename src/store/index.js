@@ -1,5 +1,6 @@
 import React from "react";
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import thunk from "redux-thunk";
 import { animeReducer } from "./animeReducer";
 import { headerItemReducer } from "./headerItemReducer";
 import { loadReducer } from "./loadReducer";
@@ -14,4 +15,4 @@ const rootReducer = combineReducers({
     quote: quoteReducer,
 });
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunk));
