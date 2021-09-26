@@ -1,7 +1,7 @@
 import createSagaMiddleware from "@redux-saga/core";
 import React from "react";
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { watchLoadQuotes } from "../sagas";
+import rootSaga from "../sagas";
 import { animeReducer } from "./animeReducer";
 import { headerItemReducer } from "./headerItemReducer";
 import { loadReducer } from "./loadReducer";
@@ -18,4 +18,4 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(watchLoadQuotes);
+sagaMiddleware.run(rootSaga);

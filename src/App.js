@@ -8,6 +8,7 @@ import { Quote } from './components/Quote/Quote';
 import { Button } from './components/Button/Button';
 import { PaginatorTypeTwo } from './components/Paginator/PaginatorTypeTwo';
 import QuoteList from './components/QuoteList/QuoteList';
+import { loadAnime, loadQuote } from './actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,30 +29,10 @@ function App() {
   const quote = useSelector(state => state.quote.quote);
   const quotes = useSelector(state => state.quote.quotes);
 
-  const updateAnime = () => {
-    dispatch({type: 'SET_LOAD', payload: true});
-    fetch('https://animechan.vercel.app/api/available/anime')
-      .then(response => response.json())
-      .then(anime => {
-        dispatch({type: 'UPDATE_ANIME', payload: anime});
-        dispatch({type: 'SET_LOAD', payload: false});
-      });
-  }
-
-  const updateQuote = () => {
-    dispatch({type: 'SET_LOAD', payload: true});
-    fetch('https://animechan.vercel.app/api/random')
-      .then(response => response.json())
-      .then(q => {
-        dispatch({type: 'UPDATE_QUOTE', payload: q});
-        dispatch({type: 'SET_LOAD', payload: false});
-      })
-  }
-
   useEffect(() => {
     dispatch({type: 'SET_HEADER_ITEM', payload: headerItems[0]});
-    updateAnime();
-    updateQuote();
+    dispatch(loadAnime());
+    dispatch(loadQuote());
   }, []);
 
   return (
@@ -81,7 +62,7 @@ function App() {
           <>
             <Quote quote={quote} />
             <div className='wrapper'>
-              <Button color='#faa' onClick={updateQuote}>Random</Button>
+              <Button color='#faa' onClick={() => dispatch(loadQuote())}>Random</Button>
             </div>
           </>
       }

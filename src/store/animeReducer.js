@@ -1,10 +1,12 @@
+import { UPDATE_ANIME } from "../actions";
+
 const defaultState = {
     anime: [],
 }
   
 export const animeReducer = (state = defaultState, action) => {
     switch (action.type) {
-      case 'UPDATE_ANIME':
+      case UPDATE_ANIME:
         return {anime: action.payload};
   
       default:
