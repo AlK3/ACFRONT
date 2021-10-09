@@ -1,28 +1,29 @@
-import React from "react";
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { loadQuotes } from "../../actions";
-import { Button } from "../Button/Button";
-import { StyledPaginator } from "./StyledPaginator";
+import { loadQuotes } from '../../store/actions';
+import { ButtonText } from "../Button/Button.styles";
+import { StyledPaginator } from "./Paginator.styles";
 
 export const PaginatorTypeTwo = (props) => {
-    const dispatch = useDispatch();
-    const pageAnime = useSelector(state => state.page.pageAnime);
-    const quotes = useSelector(state => state.quote.quotes);
+  const dispatch = useDispatch();
+  const quotes = useSelector(state => state.quote.quotes);
+  const pageAnime = useSelector(state => state.page.pageAnime);
 
-    const onClick = (page) => {
-        dispatch(loadQuotes(pageAnime.anime, page));
-        dispatch({type: 'UPDATE_PAGE_ANIME', payload: {anime: pageAnime.anime, page: page}});
-    };
+  const onClick = (page) => {
+    dispatch(loadQuotes(page));
+    dispatch({type: 'UPDATE_PAGE_ANIME', payload: page});
+    dispatch(loadQuotes(props.anime, page));
+  };
 
-    return (
-        <StyledPaginator>
-            {
-                <>
-                    <Button onClick={pageAnime.page > 1 ? () => onClick(pageAnime.page - 1) : null}>Previous</Button>
-                    <Button>{pageAnime.page}</Button>
-                    <Button onClick={quotes[9] ? () => onClick(pageAnime.page + 1) : null}>Next</Button>
-                </>
-            }
-        </StyledPaginator>
-    );
+  return (
+    <StyledPaginator>
+      {
+        <>
+          <ButtonText onClick={pageAnime > 1 ? () => onClick(pageAnime - 1) : null}>Previous</ButtonText>
+          <ButtonText>{pageAnime}</ButtonText>
+          <ButtonText onClick={quotes[9] ? () => onClick(pageAnime + 1) : null}>Next</ButtonText>
+        </>
+      }
+    </StyledPaginator>
+  );
 }

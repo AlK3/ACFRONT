@@ -1,9 +1,9 @@
+import React from 'react';
 import { nanoid } from "nanoid";
-import React from "react";
 import { Quote } from "../Quote/Quote";
-import { StyledQuoteList } from "./StyledQuoteList";
+import { StyledQuoteList } from "./QuoteList.styles";
 
-export default function QuoteList(props) {
+export const QuoteList = (props) => {
     return (
         <StyledQuoteList>
             {props.quotes[0] ?

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyledQuote } from "./StyledQuote";
+import React from 'react';
+import { StyledQuote } from './Quote.styles';
 
 export const Quote = ({quote}) => {
 

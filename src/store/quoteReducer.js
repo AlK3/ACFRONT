@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { UPDATE_QUOTE, UPDATE_QUOTES } from "../actions";
+import { UPDATE_QUOTE, UPDATE_QUOTES } from "./actions";
 
 const initialState = {
     quote: {
@@ -7,7 +7,7 @@ const initialState = {
         character: '',
         quote: '',
     },
-    quotes: []
+    quotes: [],
 }
 
 const updateQuote = createAction(UPDATE_QUOTE);
@@ -19,5 +19,5 @@ export const quoteReducer = createReducer(initialState, {
   },
   [updateQuotes]: (state, action) => {
     state.quotes = action.payload;
-  }
+  },
 });
