@@ -1,7 +1,7 @@
 import { Toolbar } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ButtonContained } from '../Button/Button.styles';
+import { StyledLink } from '../Link/Link.styles';
 import { StyledHeader } from './Header.styles';
 
 export const Header = ({items}) => {
@@ -11,12 +11,12 @@ export const Header = ({items}) => {
         <Toolbar style={{justifyContent: 'space-evenly'}}>
           {items.map(item => {
             return (
-              <Link to={item}>
+              <StyledLink to={item}>
                 <ButtonContained
                   key={item}>
                     {item}
                 </ButtonContained>
-              </Link>
+              </StyledLink>
             );
           })}
         </Toolbar>

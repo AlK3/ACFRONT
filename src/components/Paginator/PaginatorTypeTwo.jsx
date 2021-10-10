@@ -10,8 +10,9 @@ export const PaginatorTypeTwo = (props) => {
   const pageAnime = useSelector(state => state.page.pageAnime);
 
   const onClick = (page) => {
+    console.log(page);
     dispatch(loadQuotes(page));
-    dispatch({type: 'UPDATE_PAGE_ANIME', payload: page});
+    dispatch({type: 'UPDATE_PAGE_ANIME', payload: {anime: props.anime, page: page}});
     dispatch(loadQuotes(props.anime, page));
   };
 
@@ -19,9 +20,9 @@ export const PaginatorTypeTwo = (props) => {
     <StyledPaginator>
       {
         <>
-          <ButtonText onClick={pageAnime > 1 ? () => onClick(pageAnime - 1) : null}>Previous</ButtonText>
-          <ButtonText>{pageAnime}</ButtonText>
-          <ButtonText onClick={quotes[9] ? () => onClick(pageAnime + 1) : null}>Next</ButtonText>
+          <ButtonText onClick={pageAnime.page > 1 ? () => onClick(pageAnime.page - 1) : null}>Previous</ButtonText>
+          <ButtonText>{pageAnime.page}</ButtonText>
+          <ButtonText onClick={quotes[9] ? () => onClick(pageAnime.page + 1) : null}>Next</ButtonText>
         </>
       }
     </StyledPaginator>

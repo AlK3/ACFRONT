@@ -17,6 +17,8 @@ function fetchAnime() {
 }
 
 function* workerLoadQuotes({title, page}) {
+    console.log(title);
+    console.log(page);
     yield put({type: 'SET_LOAD', payload: true});
     const quotes = yield call(fetchQuotes, title, page);
     yield put({type: 'SET_LOAD', payload: false});

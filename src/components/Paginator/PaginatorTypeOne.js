@@ -5,7 +5,6 @@ import { StyledPaginator } from './Paginator.styles';
 
 export const PaginatorTypeOne = ({total}) => {
   const dispatch = useDispatch();
-  const pageMain = useSelector(state => state.page.pageMain);
   const perPage = useSelector(state => state.page.perPage);
 
   const pageNumbers = [];

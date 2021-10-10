@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ButtonContained } from "../components/Button/Button.styles";
-import { Loader } from "../components/Loader/Loader";
-import { Main } from "../components/Main/Main";
-import { Quote } from "../components/Quote/Quote";
-import { Title } from "../components/Title/Title";
-import { loadQuote } from "../store/actions";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ButtonContained } from '../components/Button/Button.styles';
+import { Loader } from '../components/Loader/Loader';
+import { Main } from '../components/Main/Main';
+import { Quote } from '../components/Quote/Quote';
+import { Title } from '../components/Title/Title';
+import { loadQuote } from '../store/actions';
 
-export const RandomPage = (props) => {
+export const RandomPage = () => {
   const dispatch = useDispatch();
   const quote = useSelector(state => state.quote.quote);
   const load = useSelector(state => state.load.load);
 
   useEffect(() => {
-    dispatch(loadQuote());
+    if (!quote.quote.trim())
+      dispatch(loadQuote());
   }, []);
 
   const clickHandler = () => {

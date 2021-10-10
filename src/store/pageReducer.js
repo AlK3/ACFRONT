@@ -3,7 +3,10 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 const initialState = {
     perPage: 30,
     pageMain: 1,
-    pageAnime: 1,
+    pageAnime: {
+        anime: '',
+        page: 1
+    },
 }
 
 const updatePerPage = createAction('UPDATE_PER_PAGE');
